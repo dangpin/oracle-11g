@@ -522,7 +522,7 @@ STORAGETYPE=FS
 # Default value : "US7ASCII"
 # Mandatory     : NO
 #-----------------------------------------------------------------------------
-CHARACTERSET="AL32UTF8"
+CHARACTERSET="ZHS16GBK"
 
 #-----------------------------------------------------------------------------
 # Name          : NATIONALCHARACTERSET
@@ -693,7 +693,7 @@ SYSDBAUSERNAME = "system"
 # Default value : none
 # Mandatory     : YES
 #-----------------------------------------------------------------------------
-#SYSDBAPASSWORD = "password"
+SYSDBAPASSWORD = "p@ssword"
 
 #-----------------------------------------------------------------------------
 # Name          : TEMPLATENAME

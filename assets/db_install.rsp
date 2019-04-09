@@ -107,33 +107,13 @@ ORACLE_BASE=/opt/oracle/app
 oracle.install.db.InstallEdition=EE
 
 #------------------------------------------------------------------------------
-# This variable is used to enable or disable custom install and is considered
-# only if InstallEdition is EE.
-#
-# true  : Components mentioned as part of 'optionalComponents' property
-#         are considered for install.
-# false : Value for 'optionalComponents' is not considered.
+# This variable is used to enable ordisable custom install.
+# true : Components mentioned as part of 'customComponents' property
+#        are considered for install.
+# false : Value for 'customComponents' isnot considered.
 #------------------------------------------------------------------------------
-oracle.install.db.EEOptionsSelection=false
-
-#------------------------------------------------------------------------------
-# This variable is considered only if 'EEOptionsSelection' is set to true. 
-#
-# Description: List of Enterprise Edition Options you would like to enable.
-#
-#              The following choices are available. You may specify any
-#              combination of these choices.  The components you choose should
-#              be specified in the form "internal-component-name:version"
-#              Below is a list of components you may specify to enable.
-#        
-#              oracle.oraolap:11.2.0.4.0 - Oracle OLAP
-#              oracle.rdbms.dm:11.2.0.4.0 - Oracle Data Mining
-#              oracle.rdbms.dv:11.2.0.4.0 - Oracle Database Vault
-#              oracle.rdbms.lbac:11.2.0.4.0 - Oracle Label Security
-#              oracle.rdbms.partitioning:11.2.0.4.0 - Oracle Partitioning
-#              oracle.rdbms.rat:11.2.0.4.0 - Oracle Real Application Testing
-#------------------------------------------------------------------------------
-oracle.install.db.optionalComponents=oracle.rdbms.partitioning:11.2.0.4.0,oracle.oraolap:11.2.0.4.0,oracle.rdbms.dm:11.2.0.4.0,oracle.rdbms.dv:11.2.0.4.0,oracle.rdbms.lbac:11.2.0.4.0,oracle.rdbms.rat:11.2.0.4.0
+oracle.install.db.isCustomInstall=false
+oracle.install.db.customComponents=oracle.rdbms.partitioning:11.2.0.4.0,oracle.oraolap:11.2.0.4.0,oracle.rdbms.dm:11.2.0.4.0,oracle.rdbms.dv:11.2.0.4.0,oracle.rdbms.lbac:11.2.0.4.0,oracle.rdbms.rat:11.2.0.4.0
 
 ###############################################################################
 #                                                                             #
@@ -141,6 +121,7 @@ oracle.install.db.optionalComponents=oracle.rdbms.partitioning:11.2.0.4.0,oracle
 # ------------------------------------------                                  #
 # Provide values for the OS groups to which OSDBA and OSOPER privileges       #
 # needs to be granted. If the install is being performed as a member of the   #		
+# needs to be granted. If the install is being performed as a member of the   #
 # group "dba", then that will be used unless specified otherwise below.	      #
 #                                                                             #
 # The value to be specified for OSDBA and OSOPER group is only for UNIX based #
@@ -166,37 +147,22 @@ oracle.install.db.OPER_GROUP=dba
 oracle.install.db.CLUSTER_NODES=
 
 #------------------------------------------------------------------------------
-# This variable is used to enable or disable RAC One Node install.
-#
-#   - true  : Value of RAC One Node service name is used.
-#   - false : Value of RAC One Node service name is not used.
-#
-# If left blank, it will be assumed to be false
-#------------------------------------------------------------------------------
-oracle.install.db.isRACOneInstall=
-
-#------------------------------------------------------------------------------
-# Specify the name for RAC One Node Service. 
-#------------------------------------------------------------------------------
-oracle.install.db.racOneServiceName=
-
-#------------------------------------------------------------------------------
 # Specify the type of database to create.
 # It can be one of the following:
 #   - GENERAL_PURPOSE/TRANSACTION_PROCESSING             
 #   - DATA_WAREHOUSE                                
 #------------------------------------------------------------------------------
-oracle.install.db.config.starterdb.type=
+oracle.install.db.config.starterdb.type=GENERAL_PURPOSE
 
 #------------------------------------------------------------------------------
 # Specify the Starter Database Global Database Name. 
 #------------------------------------------------------------------------------
-oracle.install.db.config.starterdb.globalDBName=
+oracle.install.db.config.starterdb.globalDBName=ora11g
 
 #------------------------------------------------------------------------------
 # Specify the Starter Database SID.
 #------------------------------------------------------------------------------
-oracle.install.db.config.starterdb.SID=
+oracle.install.db.config.starterdb.SID=ora11g
 
 #------------------------------------------------------------------------------
 # Specify the Starter Database character set.
@@ -226,7 +192,7 @@ oracle.install.db.config.starterdb.memoryOption=true
 # on the system.
 # Example: oracle.install.db.config.starterdb.memoryLimit=512
 #------------------------------------------------------------------------------
-oracle.install.db.config.starterdb.memoryLimit=
+oracle.install.db.config.starterdb.memoryLimit=512
 
 #------------------------------------------------------------------------------
 # This variable controls whether to load Example Schemas onto
@@ -294,6 +260,22 @@ oracle.install.db.config.starterdb.control=DB_CONTROL
 # the database.      
 #-------------------------------------------------------------------------------
 oracle.install.db.config.starterdb.gridcontrol.gridControlServiceURL=
+
+#-------------------------------------------------------------------------------
+# This variable indicates whether toreceive email notification for critical
+# alerts when using DB control.
+#-------------------------------------------------------------------------------
+oracle.install.db.config.starterdb.dbcontrol.enableEmailNotification=false
+
+#-------------------------------------------------------------------------------
+# Specify the email address to which thenotifications are to be sent.
+#-------------------------------------------------------------------------------
+oracle.install.db.config.starterdb.dbcontrol.emailAddress=
+
+#-------------------------------------------------------------------------------
+# Specify the SMTP server used for emailnotifications.
+#-------------------------------------------------------------------------------
+oracle.install.db.config.starterdb.dbcontrol.SMTPServer=
 
 ###############################################################################
 #                                                                             #
@@ -428,46 +410,3 @@ PROXY_USER=
 # Example    : PROXY_PWD=password 
 #------------------------------------------------------------------------------
 PROXY_PWD=
-
-#------------------------------------------------------------------------------
-# Specify the proxy realm. This value is used if auto-updates option is selected.
-#
-# Example    : PROXY_REALM=metalink 
-#------------------------------------------------------------------------------
-PROXY_REALM=
-
-#------------------------------------------------------------------------------
-# Specify the Oracle Support Hub URL. 
-# 
-# Example    : COLLECTOR_SUPPORTHUB_URL=https://orasupporthub.company.com:8080/
-#------------------------------------------------------------------------------
-COLLECTOR_SUPPORTHUB_URL=
-
-#------------------------------------------------------------------------------
-# Specify the auto-updates option. It can be one of the following:
-#   - MYORACLESUPPORT_DOWNLOAD
-#   - OFFLINE_UPDATES
-#   - SKIP_UPDATES
-#------------------------------------------------------------------------------
-oracle.installer.autoupdates.option=
-#------------------------------------------------------------------------------
-# In case MYORACLESUPPORT_DOWNLOAD option is chosen, specify the location where
-# the updates are to be downloaded.
-# In case OFFLINE_UPDATES option is chosen, specify the location where the updates 
-# are present.
-#------------------------------------------------------------------------------
-oracle.installer.autoupdates.downloadUpdatesLoc=
-#------------------------------------------------------------------------------
-# Specify the My Oracle Support Account Username which has the patches download privileges  
-# to be used for software updates.
-#  Example   : AUTOUPDATES_MYORACLESUPPORT_USERNAME=abc@oracle.com
-#------------------------------------------------------------------------------
-AUTOUPDATES_MYORACLESUPPORT_USERNAME=
-
-#------------------------------------------------------------------------------
-# Specify the My Oracle Support Account Username password which has the patches download privileges  
-# to be used for software updates.
-#
-# Example    : AUTOUPDATES_MYORACLESUPPORT_PASSWORD=password
-#------------------------------------------------------------------------------
-AUTOUPDATES_MYORACLESUPPORT_PASSWORD=

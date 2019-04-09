@@ -1,12 +1,8 @@
-FROM centos:7
-MAINTAINER jaspeen
+FROM jaspeen/oracle-11g
+MAINTAINER dangpin
 
-ADD assets /assets
+COPY assets/db_install.rsp /assets/
+COPY assets/dbca.rsp /assets/
 
+RUN cat /assets/profile >> /opt/oracle/.bashrc
 RUN chmod -R 755 /assets
-RUN /assets/setup.sh
-
-EXPOSE 1521
-EXPOSE 8080
-
-CMD ["/assets/entrypoint.sh"]
