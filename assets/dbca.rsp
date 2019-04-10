@@ -283,7 +283,7 @@ TEMPLATENAME = "General_Purpose.dbc"
 # Default value : None
 # Mandatory     : Yes
 #-----------------------------------------------------------------------------
-SYSPASSWORD = "oracle"
+SYSPASSWORD = "p@ssword"
 
 #-----------------------------------------------------------------------------
 # Name          : SYSTEMPASSWORD
@@ -293,7 +293,7 @@ SYSPASSWORD = "oracle"
 # Default value : None
 # Mandatory     : Yes
 #-----------------------------------------------------------------------------
-SYSTEMPASSWORD = "oracle"
+SYSTEMPASSWORD = "p@ssword"
 
 #-----------------------------------------------------------------------------
 # Name          : SERVICEUSERPASSWORD
@@ -693,7 +693,7 @@ SYSDBAUSERNAME = "system"
 # Default value : none
 # Mandatory     : YES
 #-----------------------------------------------------------------------------
-SYSDBAPASSWORD = "p@ssword"
+#SYSDBAPASSWORD = "password"
 
 #-----------------------------------------------------------------------------
 # Name          : TEMPLATENAME
